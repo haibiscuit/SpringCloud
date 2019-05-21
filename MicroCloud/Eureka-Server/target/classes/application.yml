@@ -1,0 +1,15 @@
+##如果想实现高可用,可以将该项目打包多份jar文件
+server:
+  port: 8761  #指定Eureka-Server的端口为8761
+eureka:
+  server:
+    enable-self-preservation: false   #自我保护机制,默认true,生产环境中要设为true
+    response-cache-update-interval-ms: 30  #默认30更新一次响应缓存
+  instance:
+    hostname: peer1       #这里服务器的IP地址
+  client:
+    registerWithEureka: false  #防止自己注册自己，默认Eureka会注册自己
+    fetchRegistry: false       #防止自己注册自己，默认Eureka会注册自己
+    #可以同步到其他的server端，代表将注册信息注册到该端口下的项目中
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8762/eureka/,http://${eureka.instance.hostname}:8764/eureka/      #表示同时向其他的Eureka-Server同步注册信息

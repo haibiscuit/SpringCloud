@@ -1,0 +1,23 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+server:
+  port: 5000
+spring:
+  application:
+    name: Service-Zuul
+zuul:
+  routes:
+    hiapi:                        #这里是自己定义
+      path: /hiapi/**             #url中以/hiapi开头的请求都会分发到Eureka-Client服务上
+      serviceId: service-hi       #serviceId会启动ribbon的负载均衡
+                                  #如果不想启用负载均衡，去掉serviceId，改用配置url: http://localhost:8763,会怼到指定的端口
+    ribbonapi:
+      path: /ribbonapi/**
+      serviceId: Eureka-Ribbon-Client
+    feignapi:
+      path: /feignapi/**
+      serviceId: Eureka-Feign-Client
+  prefix: /v1              #给url加前缀,v1可以是版本号，即访问hiapi时的路径变为http://localhost:5000/v1/hiapi/hi?name=haibiscuit

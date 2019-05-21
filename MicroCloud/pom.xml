@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.19.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	
+	<groupId>com.fengxm</groupId>
+	<artifactId>MicroCloud</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>MicroCloud</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-boot.version>1.5.19.RELEASE</spring-boot.version>
+		<spring-cloud.version>Dalston.SR1</spring-cloud.version>
+	</properties>
+
+    <!-- 加入该配置，Spring Boot类型的子项目，可不用配置org.springframework.boot的<parent>标签 -->
+    <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	
+	<build>
+		 <pluginManagement>
+		    <plugins>
+	            <plugin>
+	                <groupId>org.springframework.boot</groupId>
+	                <artifactId>spring-boot-maven-plugin</artifactId>
+	                <configuration>  
+	                    <classifier>exec</classifier>
+	                    
+	                    <source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+						
+	                    <executable>true</executable>
+	                    <includeSystemScope>true</includeSystemScope> <!-- 为了加载本地导入的jar,即不是通过maven下载的 --> 
+	                    
+	     			    <mainClass>${start-class}</mainClass>  <!-- 运行文件的入口类 -->
+				        <layout>JAR</layout>  
+				    </configuration>  
+				    <executions>  
+					      <execution>  
+					        <goals>  
+					          <goal>repackage</goal>  <!--可以把依赖的包都打包到生成的Jar包中-->
+					        </goals>  
+					      </execution>  
+				    </executions>
+	            </plugin>
+	        </plugins> 
+		  </pluginManagement>
+    </build>
+    
+     
+	<modules>
+        <module>Eureka-Server</module>
+        <module>Eureka-Client</module>
+        <module>Eureka-Ribbon-Client</module>
+        <module>Eureka-Client1</module>
+        <module>Eureka-Feign-Client</module>
+        <module>Eureka-Monitor-Client</module>
+        <module>Eureka-Zuul-Client</module>
+        <module>Eureka-Config-Server</module>
+        <module>Eureka-Config-Client</module>
+        <module>Eureka-Zipkin-Server</module>
+        <module>Eureka-User-Service</module>
+        <module>Eureka-Gateway-Service</module>
+	</modules>
+</project>

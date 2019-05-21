@@ -1,0 +1,28 @@
+server:
+  port: 8769
+
+spring:
+  application:
+    name: service-turbine
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/    #向注册中心注册该服务
+      
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+
+turbine:
+  app-config: Eureka-Feign-Client,Eureka-Ribbon-Client     #这里指定需要监控的服务名
+  aggregator:
+    clusterConfig: default
+  clusterNameExpression: new String("default")
+  combine-host: true

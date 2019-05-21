@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Eureka-Gateway-Service
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.fengxm
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/MicroCloud/E
+ ureka-Gateway-Service/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
